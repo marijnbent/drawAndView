@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View and Don't Draw</title>
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+    <script>
+        console.log('Firebase connection');
+        var ref = new Firebase("https://drawandview.firebaseio.com/image");
+        ref.on("value", function(snapshot) {
+            $("#image").attr("src", snapshot.val());
+            //console.log(snapshot.val());
+        }, function (errorObject) {
+            console.log("The read failed: " + errorObject.code);
+        });
+    </script>
+</head>
+<body>
+<a href="index.php" style="display: block;">Let me draw!</a>
+<img id="image" style="border: 1px solid #000"/>
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+</body>
+</html>
